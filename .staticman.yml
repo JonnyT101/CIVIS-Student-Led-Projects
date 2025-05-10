@@ -1,0 +1,10 @@
+comments:
+  allowedFields: ["name", "title", "description"]
+  requiredFields: ["name", "title", "description"]
+  branch: "main"
+  path: "data/entries"
+  filename: "entry-:timestamp"
+  format: "json"
+  moderation: true
+  reCaptcha:
+    enabled: false
