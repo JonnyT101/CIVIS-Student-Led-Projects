@@ -28,7 +28,14 @@
         <th>Teilnehmende</th>
         <th>Teilnahme</th>
       </tr>
-    </thead>
+    </thead> 
+    <form action="https://your-staticman-instance.herokuapp.com/v3/entry/github/DEIN_USERNAME/REPO_NAME/comments" method="POST">
+  <input name="name" placeholder="Dein Name" required>
+  <input name="title" placeholder="Projekttitel" required>
+  <textarea name="description" placeholder="Projektbeschreibung" required></textarea>
+  <button type="submit">Absenden</button>
+</form>
+
     <tbody></tbody>
   </table>
 
