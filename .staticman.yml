@@ -1,10 +1,12 @@
 comments:
   allowedFields: ["name", "title", "description"]
   requiredFields: ["name", "title", "description"]
+  format: "yaml"
+  path: "_data/comments"
   branch: "main"
-  path: "data/comments"
-  filename: "entry-:timestamp"
-  format: "json"
-  moderation: true
-  reCaptcha:
-    enabled: false
+  generatedFields:
+    date:
+      type: date
+      options:
+        format: iso8601
+
