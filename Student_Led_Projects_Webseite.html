@@ -8,7 +8,7 @@
     body { font-family: Arial, sans-serif; padding: 20px; }
     table { width: 100%; border-collapse: collapse; margin-top: 20px; }
     th, td { border: 1px solid #ccc; padding: 10px; text-align: left; }
-    input[type="text"] { width: 100%; }
+    input[type="text"] { width: 100%; margin-bottom: 10px; }
     button { margin-top: 10px; padding: 5px 10px; }
   </style>
 </head>
@@ -31,28 +31,14 @@
     <tbody></tbody>
   </table>
 
-<h2>Neues Projekt per Formular einreichen</h2>
-<form action="https://your-staticman-instance.herokuapp.com/v3/entry/github/JonnyT101/CIVIS-Student-Led-Projects/comments" method="POST">
-  <input name="name" placeholder="Dein Name" required>
-  <input name="title" placeholder="Projekttitel" required>
-  <textarea name="description" placeholder="Projektbeschreibung" required></textarea>
-  <button type="submit">Absenden</button>
-</form>
-
-  
   <script>
-    let projects = JSON.parse(localStorage.getItem('projects')) || [];
-
-    function saveProjects() {
-      localStorage.setItem('projects', JSON.stringify(projects));
-    }
+    let projects = [];
 
     function addProject() {
       const title = document.getElementById("projectTitle").value.trim();
       const description = document.getElementById("projectDescription").value.trim();
       if (title && description) {
         projects.push({ title, description, participants: [] });
-        saveProjects();
         renderTable();
         document.getElementById("projectTitle").value = '';
         document.getElementById("projectDescription").value = '';
@@ -60,10 +46,9 @@
     }
 
     function addParticipant(index) {
-      const name = prompt("Dein Name für die Teilnahme:");
+      const name = prompt("Dein Name:");
       if (name) {
         projects[index].participants.push(name);
-        saveProjects();
         renderTable();
       }
     }
@@ -75,7 +60,7 @@
         const row = document.createElement("tr");
 
         const titleCell = document.createElement("td");
-        titleCell.textContent = ${proj.title}: ${proj.description};
+        titleCell.textContent = `${proj.title}: ${proj.description}`;
 
         const participantsCell = document.createElement("td");
         participantsCell.innerHTML = proj.participants.join("<br>") || "-";
